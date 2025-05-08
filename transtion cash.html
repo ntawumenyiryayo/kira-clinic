@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Currency Exchange Platform</title>
+  <style>
+     body {
+            font-family: Arial, sans-serif;
+         padding: 30px;
+            margin: 0;
+            height: 100vh;
+            align-items: center;
+            background: linear-gradient(to bottom, #032d7a 50%, #ffffff 50%);
+        }
+        .container {
+        width: 40%;
+            margin: auto;
+            background: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 2px;
+            color: white;
+        }
+        H2{color: white;}
+        label {
+            display: flex;
+            margin-top: 15px;
+            font-weight: bold;
+            
+        }
+
+  
+  input, select, button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  #result {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  </style>
+</head>
+<body><CENTER><H1> XYZ-CAMPANY</H1>
+  
+  <h2>Currency Exchange Platform</h2></CENTER>
+  <div class="container">
+    
+    <div class="exchange-form">
+      <label for="amount">Amount:</label>
+      <input type="number" id="amount" placeholder="Enter amount" />
+
+      <label for="fromCurrency">From:</label>
+      <select id="fromCurrency">
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="RWF">RWF</option>
+      </select>
+
+      <label for="toCurrency">To:</label>
+      <select id="toCurrency">
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="RWF">RWF</option>
+      </select>
+
+      <button id="convertBtn">Convert</button>
+    </div>
+    <div id="result"></div>
+  </div>
+  <script>document.getElementById("convertBtn").addEventListener("click", function () {
+    const amount = parseFloat(document.getElementById("amount").value);
+    const fromCurrency = document.getElementById("fromCurrency").value;
+    const toCurrency = document.getElementById("toCurrency").value;
+  
+    // Exchange rates (example rates)
+    const exchangeRates = {
+      USD: { USD: 1, EUR: 0.9, RWF: 1200 },
+      EUR: { USD: 1.1, EUR: 1, RWF: 1320 },
+      RWF: { USD: 0.00083, EUR: 0.00076, RWF: 1 },
+    };
+  
+    if (isNaN(amount) || amount <= 0) {
+      document.getElementById("result").textContent = "Please enter a valid amount.";
+      return;
+    }
+  
+    const rate = exchangeRates[fromCurrency][toCurrency];
+    const convertedAmount = (amount * rate).toFixed(2);
+  
+    document.getElementById("result").textContent = `${amount} ${fromCurrency} = ${convertedAmount} ${toCurrency}`;
+  });
+  </script>
+</body>
+</html>
